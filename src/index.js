@@ -11,6 +11,10 @@ const port = process.env.PORT
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req,res)=>{
+	res.send("hello!")
+})
+
 app.post('/register', async (req,res)=> {
 	let handle = req.query.handle
 	let email = req.query.email
