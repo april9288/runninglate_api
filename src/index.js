@@ -26,22 +26,17 @@ app.post('/register', async (req,res)=> {
 			headers: {"Accept": "application/vnd.github.v3+json"}
 		})
 
-		let userModel = {
+		let user = {
 			name: githubResponse.data.name,
 			handle: handle,
 			profile: githubResponse.data.avatar_url,
 			email: email
 			}
-		user.push(userModel)
+
 		res.status(200).send({status: 200, user})
 	}catch(e){
-		//console.log(e.response.status)
 		res.status(200).send({status: 400, user})
 	}
-})
-
-app.post('/userData', (req,res)=> {
-	res.send(user)
 })
 
 app.post('/email', async (req,res)=> {
@@ -54,7 +49,6 @@ app.post('/email', async (req,res)=> {
 	} catch(e) {
 		res.status(200).send({status: 400, message:"fail"})
 	}
-	
 })
 
 app.listen(port, ()=>{
